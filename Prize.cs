@@ -7,7 +7,7 @@ namespace Quest
         /* These private fields hold the "state" of a prize object.
             The values stored in these fields are not accessible outside the class,
             but can be used by methods or properties within the class*/
-        private string _text = "All the donuts in the World";
+        private string _text;
 
         /* A constructor for the Prize
          We can tell it's a constructor because it has the same name as the class 
@@ -21,14 +21,18 @@ namespace Quest
         // This method will take an Adventurer object and givee that Adventurer a prize for the challenge
         public void ShowPrize(Adventurer Person)
         {
-                for (int i = 0; i < Person.Awesomeness; i++)
+            if (Person.Awesomeness > 0)
+            {
+                for (int i = 0; i < Person.Awesomeness - 1; i++)
                 {
                     Console.WriteLine(_text);
                 }
-            if (Person.Awesomeness < 0)
-            {
-                Console.WriteLine("you have always been doomed ...  ");
             }
+            else
+            {
+                Console.WriteLine("You have always been doomed ... ");
+            }
+
         }
     }
 }

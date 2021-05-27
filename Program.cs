@@ -109,7 +109,7 @@ namespace Quest
 
                 // Prompt for replay to be triggered
                 Console.WriteLine();
-                Console.WriteLine($"{AdventurerName}, would you like you increase your Awesomeness, and try again? (Y/N):  ");
+                Console.Write($"{AdventurerName}, would you like you increase your Awesomeness, and try again? (Y/N):  ");
 
                 string Reply = Console.ReadLine().ToLower();
 
