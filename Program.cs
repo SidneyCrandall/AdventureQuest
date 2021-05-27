@@ -34,72 +34,76 @@ namespace Quest
             {
                 Console.WriteLine("What is your name?");
                 string AdventurerName = Console.ReadLine();
+
                 // Create a few challenges for our Adventurer's quest
                 // The "Challenge" Constructor takes three arguments
                 //   the text of the challenge
                 //   a correct answer
                 //   a number of awesome points to gain or lose depending on the success of the challenge
-                Challenge twoPlusTwo = new Challenge("2 + 2?", 4, 10);
-                Challenge theAnswer = new Challenge(
-                    "What's the answer to life, the universe and everything?", 42, 25);
-                Challenge whatSecond = new Challenge(
-                    "What is the current second?", DateTime.Now.Second, 50);
+                List<Challenge> holyGrail = new List<Challenge>() {
+                new Challenge("2 + 2?", 4, 10),
 
-                int randomNumber = new Random().Next() % 10;
-                Challenge guessRandom = new Challenge("What number am I thinking of?", randomNumber, 25);
+                new Challenge(
+                    "What's the answer to life, the universe and everything?", 42, 25),
+                    
+                new Challenge(
+                    "What is the current second?", DateTime.Now.Second, 50),
 
-                Challenge favoriteBeatle = new Challenge(
+                new Challenge("What number am I thinking of?", new Random().Next() % 10, 25),
+
+                new Challenge(
                     @"Who's your favorite Beatle?
                     1) John
                     2) Paul
                     3) George
                     4) Ringo",
                             4, 20
-                    );
+                    ),
 
-                Challenge favoriteDog = new Challenge(
+                new Challenge(
                     @"Who is my favorite dog?
                     1) Digby
                     2) Fenrir
                     3) Miko",
                             3, 10
-                );
+                ),
 
-                Challenge favoriteAnime = new Challenge(
+                new Challenge(
                     @"Which is my favorite anime to watch?
                     1) My Hero Academia
                     2) Attack on Titan
                     3) Cowboy Bebop
                     4) Carole & Tuesday
-                    5) Tokyo Ghoul", 
+                    5) Tokyo Ghoul",
                             2, 10
-                );
+                ),
 
-                Challenge bestGoldenGirl = new Challenge(
+                new Challenge(
                     @"Who is the best Golden Girl?
                     1) Rose
                     2) Dorothy
                     3) Sophia
                     4) Blanche",
                             2, 10
-                );
+                ),
 
-                Challenge bestDoctor = new Challenge(
+                new Challenge(
                     @"Whish Doctor is the best?
                     1) 10th
                     2) 9th
                     3) 4th
                     4) 6th
                     5) It's not that simple one must weight many factors in determing this answer...",
-                            4, 25
-                );
+                            5, 50
+                ),
 
-                Challenge tomNook = new Challenge(
+                new Challenge(
                     @"Can god even defeat Tom Nook?
                     1) Yes
-                    2) No", 
+                    2) No",
                             2, 100
-                );
+                ),
+            };
 
                 // "Awesomeness" is like our Adventurer's current "score"
                 // A higher Awesomeness is better
@@ -119,19 +123,20 @@ namespace Quest
                 // If a layer redoes the quest 
                 // A list of challenges for the Adventurer to complete
                 // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
-                List<Challenge> challenges = new List<Challenge>()
-            {
-                twoPlusTwo,
-                theAnswer,
-                whatSecond,
-                guessRandom,
-                favoriteBeatle,
-                favoriteAnime,
-                favoriteDog,
-                bestGoldenGirl,
-                bestDoctor,
-                tomNook
-            };
+                List<Challenge> challenges = Challenge.GetRandomQuestions(holyGrail);
+
+                /*{
+                    /*twoPlusTwo,
+                    theAnswer,
+                    whatSecond,
+                    guessRandom,
+                    favoriteBeatle,
+                    favoriteAnime,
+                    favoriteDog,
+                    bestGoldenGirl,
+                    bestDoctor,
+                    tomNook
+                };*/
 
                 // Loop through all the challenges and subject the Adventurer to them
                 foreach (Challenge challenge in challenges)

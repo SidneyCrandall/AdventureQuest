@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Quest
 {
@@ -50,6 +51,29 @@ namespace Quest
             // Note how we call an Adventurer object's method
             Console.WriteLine(adventurer.GetAdventurerStatus());
             Console.WriteLine();
+        }
+
+        public static List<Challenge> GetRandomQuestions(List<Challenge> pool)
+        {
+            Random r = new Random();
+            List<int> listNumbers = new List<int>();
+            int number;
+            for (int i = 0; i < 5; i++)
+            {
+                do
+                {
+                    number = r.Next(0, pool.Count);
+                }
+                while (listNumbers.Contains(number));
+                listNumbers.Add(number);
+            }
+
+            List<Challenge> returnChallenge = new List<Challenge>();
+            foreach (int index in listNumbers)
+            {
+                returnChallenge.Add(pool[index]);
+            }
+            return returnChallenge;
         }
     }
 }
