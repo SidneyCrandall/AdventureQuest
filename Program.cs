@@ -10,13 +10,18 @@ namespace Quest
         static void Main(string[] args)
         {
             // Creating an instance for the adventure to have a color for their robe
-            Robe adventureRobe = new Robe();
+            Robe AdventureRobe = new Robe();
             {
-                adventureRobe.RobeLength = 60;
-                adventureRobe.Colors = new List<string>()
+                AdventureRobe.RobeLength = 60;
+                AdventureRobe.Colors = new List<string>()
                 {
                     "purple,", " ", "green,"," ", "and blue"
                 };
+            }
+
+            Hat AdventurerHat = new Hat();
+            {
+                AdventurerHat.ShininessLevel = 13;
             }
             // Askk the challenger if he would like ot replay the quest again 
             bool Replay = true;
@@ -57,7 +62,7 @@ namespace Quest
                 int maxAwesomeness = 100;
 
                 // Make a new "Adventurer" object using the "Adventurer" class
-                Adventurer theAdventurer = new Adventurer(AdventurerName, adventureRobe);
+                Adventurer theAdventurer = new Adventurer(AdventurerName, AdventureRobe, AdventurerHat);
 
                 // Line that will give the description of what the adventurer is wearing. This is from Adventurer.cs
                 Console.WriteLine(theAdventurer.GetDescription());
