@@ -14,7 +14,7 @@ namespace Quest
         public Robe ColorfulRobe { get; }
 
         // This is an "immutable" property. It only will have a 'get'. 
-        // The only place the Robe can be set is in the Adventurer constructor
+        // The only place the Hat can be set is in the Adventurer constructor
         // Note: the constructor is defined below.
         public Hat ShineyHat { get; }
 

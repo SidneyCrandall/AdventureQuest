@@ -19,10 +19,15 @@ namespace Quest
                 };
             }
 
+            // A shiney hat to protect the adventurer on his way 
             Hat AdventurerHat = new Hat();
             {
                 AdventurerHat.ShininessLevel = 13;
             }
+
+            // Every quest must have a prize 
+            Prize AdventurerPrize = new Prize("All the donuts in the World");
+
             // Askk the challenger if he would like ot replay the quest again 
             bool Replay = true;
             while (Replay)
@@ -98,9 +103,13 @@ namespace Quest
                 {
                     Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
                 }
+
+                // Show the adventurers prize before the Replay 
+                AdventurerPrize.ShowPrize(theAdventurer);
+
                 // Prompt for replay to be triggered
                 Console.WriteLine();
-                Console.WriteLine($"{AdventurerName}, would you like you increase your Awesomeness, and try again? (Y/N):");
+                Console.Write($"{AdventurerName}, would you like you increase your Awesomeness, and try again? (Y/N):  ");
 
                 string Reply = Console.ReadLine().ToLower();
 
