@@ -9,6 +9,15 @@ namespace Quest
     {
         static void Main(string[] args)
         {
+            // Creating an instance for the adventure to have a color for their robe
+            Robe adventureRobe = new Robe();
+            {
+                adventureRobe.RobeLength = 60;
+                adventureRobe.Colors = new List<string>()
+                {
+                    "purple,", " ", "green,"," ", "and blue"
+                };
+            }
             // Askk the challenger if he would like ot replay the quest again 
             bool Replay = true;
             while (Replay)
@@ -48,7 +57,10 @@ namespace Quest
                 int maxAwesomeness = 100;
 
                 // Make a new "Adventurer" object using the "Adventurer" class
-                Adventurer theAdventurer = new Adventurer(AdventurerName);
+                Adventurer theAdventurer = new Adventurer(AdventurerName, adventureRobe);
+
+                // Line that will give the description of what the adventurer is wearing. This is from Adventurer.cs
+                Console.WriteLine(theAdventurer.GetDescription());
 
                 // A list of challenges for the Adventurer to complete
                 // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
