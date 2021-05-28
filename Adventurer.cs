@@ -40,7 +40,7 @@ namespace Quest
             {
                 robeColors += $"{colors}";
             }
-            return $"{Name}, the adventurer, ventured into the unknown in their {robeColors} robe that was {ColorfulRobe.RobeLength} inches in length, and their {ShineyHat.ShininessDescription()} hat. They jumped as the Troll appeared to challenge them...";
+            return $"{Name}, the adventurer, ventured into the unknown in their {robeColors} patchwork robe that was {ColorfulRobe.RobeLength} inches in length, and their {ShineyHat.ShininessDescription()} hat. They jumped as the Troll appeared to challenge them...";
         }
 
         // This method returns a string that describes the Adventurer's status
