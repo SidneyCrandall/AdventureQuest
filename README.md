@@ -7,5 +7,5 @@ This terminal program randomly generates 5 questions for you to answer, the more
 ## Using
 1) Clone this repo
 2) `cd` in the root of the directory
-3) Once there (and you have .NET installed) run dotnet run.
+3) Once there (and you have .NET installed) run `dotnet run.`
 4) Your Quest has begun!
