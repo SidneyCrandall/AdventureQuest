@@ -25,9 +25,6 @@ namespace Quest
                 AdventurerHat.ShininessLevel = 13;
             }
 
-            // Every quest must have a prize 
-            Prize AdventurerPrize = new Prize("All the donuts in the World");
-
             // Askk the challenger if he would like ot replay the quest again 
             bool Replay = true;
             while (Replay)
@@ -41,35 +38,35 @@ namespace Quest
                 //   a correct answer
                 //   a number of awesome points to gain or lose depending on the success of the challenge
                 //  Creating a dynamic list that will change challenges whenever the program is ran. 
-                List<Challenge> holyGrail = new List<Challenge>() {
-                new Challenge("2 + 2?", 4, 10),
+                Challenge twoPlusTwo = new Challenge("2 + 2?", 4, 10);
 
-                new Challenge(
-                    "What's the answer to life, the universe and everything?", 42, 25),
+                Challenge theAnswer = new Challenge(
+                    "What's the answer to life, the universe and everything?", 42, 25);
 
-                new Challenge(
-                    "What is the current second?", DateTime.Now.Second, 50),
+                Challenge whatSecond = new Challenge(
+                    "What is the current second?", DateTime.Now.Second, 50);
 
-                new Challenge("What number am I thinking of?", new Random().Next() % 10, 25),
+                //int randomNumber = new Random().Next() % 10;
+                Challenge guessRandom = new Challenge("What number am I thinking of?", new Random().Next() % 10, 25);
 
-                new Challenge(
+                Challenge favoriteBeatle = new Challenge(
                     @"Who's your favorite Beatle?
                     1) John
                     2) Paul
                     3) George
                     4) Ringo",
                             4, 20
-                    ),
+                );
 
-                new Challenge(
+                Challenge favoriteDog = new Challenge(
                     @"Who is my favorite dog?
                     1) Digby
                     2) Fenrir
                     3) Miko",
                             3, 10
-                ),
+                );
 
-                new Challenge(
+                Challenge favoriteAnime = new Challenge(
                     @"Which is my favorite anime to watch?
                     1) My Hero Academia
                     2) Attack on Titan
@@ -77,18 +74,18 @@ namespace Quest
                     4) Carole & Tuesday
                     5) Tokyo Ghoul",
                             2, 10
-                ),
+                );
 
-                new Challenge(
+                Challenge bestGoldenGirl = new Challenge(
                     @"Who is the best Golden Girl?
                     1) Rose
                     2) Dorothy
                     3) Sophia
                     4) Blanche",
                             2, 10
-                ),
+                );
 
-                new Challenge(
+                Challenge bestDoctor = new Challenge(
                     @"Whish Doctor is the best?
                     1) 10th
                     2) 9th
@@ -96,15 +93,15 @@ namespace Quest
                     4) 6th
                     5) It's not that simple one must weight many factors in determing this answer...",
                             5, 50
-                ),
+                );
 
-                new Challenge(
+                Challenge tomNook = new Challenge(
                     @"Can god even defeat Tom Nook?
                     1) Yes
                     2) No",
-                            2, 100
-                ),
-            };
+                            2, 75
+                );
+        
 
                 // "Awesomeness" is like our Adventurer's current "score"
                 // A higher Awesomeness is better
@@ -118,15 +115,16 @@ namespace Quest
                 // Make a new "Adventurer" object using the "Adventurer" class
                 Adventurer theAdventurer = new Adventurer(AdventurerName, AdventureRobe, AdventurerHat);
 
+                // Every quest must have a prize 
+                Prize AdventurerPrize = new Prize("All the donuts in the World");
+
                 // Line that will give the description of what the adventurer is wearing. This is from Adventurer.cs
                 Console.WriteLine(theAdventurer.GetDescription());
 
                 // If a layer redoes the quest 
                 // A list of challenges for the Adventurer to complete
                 // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
-                List<Challenge> challenges = Challenge.GetRandomQuestions(holyGrail);
-
-                /* Old Code that would have asked all the questions to the Adventurer
+                List<Challenge> challenges = new List<Challenge>()
                 {
                     twoPlusTwo,
                     theAnswer,
@@ -138,13 +136,25 @@ namespace Quest
                     bestGoldenGirl,
                     bestDoctor,
                     tomNook
-                };*/
+                };
 
                 // Loop through all the challenges and subject the Adventurer to them
-                foreach (Challenge challenge in challenges)
+                // also randomize them with no repeats
+                Random r = new Random();
+                List<int> indexes = new List<int> {};
+                while (indexes.Count < 5)
                 {
-                    challenge.RunChallenge(theAdventurer);
+                    int candidate = r.Next(0, challenges.Count);
+                    if (!indexes.Contains(candidate)) {
+                        indexes.Add(candidate);
+                    }
                 }
+
+                for (int i = 0; i < indexes.Count; i++)
+                {
+                    int index = indexes[i];
+                    challenges[index].RunChallenge(theAdventurer);
+                } 
 
                 // This code examines how Awesome the Adventurer is after completing the challenges
                 // And praises or humiliates them accordingly
@@ -164,7 +174,13 @@ namespace Quest
                 // Show the adventurers prize before the Replay 
                 AdventurerPrize.ShowPrize(theAdventurer);
 
+                // Adding points to the adventurer's score if they choose to play again. 
+                // If the user chooses to repeat the quest, multiply this number by 10 and add it do the initial Awesomeness (50, found in Challenge.cs) of the adventurer on their next quest.
+                theAdventurer.Awesomeness = 50 + theAdventurer.SuccessRate * 10;
+
                 // Prompt for replay to be triggered
+                Console.WriteLine();
+                Console.Write($"{AdventurerName}, you have completed {theAdventurer.SuccessRate} challenges!");
                 Console.WriteLine();
                 Console.Write($"{AdventurerName}, would you like you increase your Awesomeness, and try again? (Y/N):  ");
 

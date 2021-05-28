@@ -22,6 +22,10 @@ namespace Quest
         //  So it can be read and changed by any code in the application
         public int Awesomeness { get; set; }
 
+        // This is a mutable property it has a "get" and a "set"
+        // This will keep tally of how well the adventurer has done if they would like to repeat challenges
+        public int SuccessRate { get; set; }
+
         // A constructor to make a new Adventurer object with a given name
         public Adventurer(string name, Robe AdventurerRobe, Hat AdventurerHat)
         {
@@ -29,18 +33,7 @@ namespace Quest
             Awesomeness = 50;
             ColorfulRobe = AdventurerRobe;
             ShineyHat = AdventurerHat; 
-        }
-
-        // GetDescription of the adventurer in a string .method that will assign a color to the robe of the adventurer
-        public string GetDescription()
-        {
-            string robeColors = "";
-
-            foreach ( string colors in ColorfulRobe.Colors)
-            {
-                robeColors += $"{colors}";
-            }
-            return $"{Name}, the adventurer, ventured into the unknown in their {robeColors} patchwork robe that was {ColorfulRobe.RobeLength} inches in length, and their {ShineyHat.ShininessDescription()} hat. They jumped as the Troll appeared to challenge them...";
+            SuccessRate = 0;
         }
 
         // This method returns a string that describes the Adventurer's status
@@ -67,6 +60,18 @@ namespace Quest
             }
 
             return $"Adventurer, {Name}, is {status}";
+        }
+
+        // GetDescription of the adventurer in a string .method that will assign a color to the robe of the adventurer
+        public string GetDescription()
+        {
+            string robeColors = "";
+
+            foreach ( string colors in ColorfulRobe.Colors)
+            {
+                robeColors += $"{colors}";
+            }
+            return $"{Name}, the adventurer, ventured into the unknown in their {robeColors} patchwork robe that was {ColorfulRobe.RobeLength} inches in length, and their {ShineyHat.ShininessDescription()} hat. They jumped as the Troll appeared to challenge them...";
         }
     }
 }
