@@ -53,27 +53,37 @@ namespace Quest
             Console.WriteLine();
         }
 
-        public static List<Challenge> GetRandomQuestions(List<Challenge> pool)
+        // NOw the program needs to find a way to look at the objects on the list and iterate through them.
+        // It will then randomly generate at least five questions that aren't repeated.
+        public static List<Challenge> GetRandomQuestions(List<Challenge> list)
         {
             Random r = new Random();
             List<int> listNumbers = new List<int>();
             int number;
             for (int i = 0; i < 5; i++)
             {
+                // do/while loop will execute code block once, before checking if condition is true
                 do
                 {
-                    number = r.Next(0, pool.Count);
+                    // Count will look at how many ?'s are in the list
+                    number = r.Next(0, list.Count);
                 }
+                // seeing how many questions are in the list
                 while (listNumbers.Contains(number));
+                //adding a new question to the new list for the program
                 listNumbers.Add(number);
             }
 
-            List<Challenge> returnChallenge = new List<Challenge>();
+            // This will be read along with the do/while to iterate the List and return the random question to be asked by the challenger
+            // essential making a new list of question that will run in the program
+            List<Challenge> challengeList = new List<Challenge>();
             foreach (int index in listNumbers)
             {
-                returnChallenge.Add(pool[index]);
+                // Add an iterated question to the new challenge
+                challengeList.Add(list[index]);
             }
-            return returnChallenge;
+            // return the new list that has only 5 ?'s that will be called again in PRogram.cs and executed
+            return challengeList;
         }
     }
 }

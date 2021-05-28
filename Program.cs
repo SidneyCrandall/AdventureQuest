@@ -40,12 +40,13 @@ namespace Quest
                 //   the text of the challenge
                 //   a correct answer
                 //   a number of awesome points to gain or lose depending on the success of the challenge
+                //  Creating a dynamic list that will change challenges whenever the program is ran. 
                 List<Challenge> holyGrail = new List<Challenge>() {
                 new Challenge("2 + 2?", 4, 10),
 
                 new Challenge(
                     "What's the answer to life, the universe and everything?", 42, 25),
-                    
+
                 new Challenge(
                     "What is the current second?", DateTime.Now.Second, 50),
 
@@ -125,8 +126,9 @@ namespace Quest
                 // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
                 List<Challenge> challenges = Challenge.GetRandomQuestions(holyGrail);
 
-                /*{
-                    /*twoPlusTwo,
+                /* Old Code that would have asked all the questions to the Adventurer
+                {
+                    twoPlusTwo,
                     theAnswer,
                     whatSecond,
                     guessRandom,
@@ -171,7 +173,7 @@ namespace Quest
                 if (Reply == "y")
                 {
                     Replay = true;
-                    Console.WriteLine("Your quest starts.. again...");
+                    Console.WriteLine("Your quest starts... again...");
                 }
                 else if (Reply == "n")
                 {
